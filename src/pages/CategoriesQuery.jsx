@@ -2,7 +2,7 @@ import axios from "axios";
 import { useQuery } from "react-query";
 
 const CategoriesQuery = () => {
-  const { data, isLoading, isError, error, isFetching } = useQuery(
+  const { data, isLoading, isError, error, isFetching, refetch } = useQuery(
     "categories",
     () => {
       return axios
@@ -10,12 +10,22 @@ const CategoriesQuery = () => {
         .then((res) => res.data);
     },
     {
+      //   select: () => {
+      //     return data.filter((dat) => dat.name);
+      //   },
+      //   enabled: false, //default false
       //   cacheTime: 5000,
-      //   staleTime: 15000,
+      //   staleTime: 10000,
+      //   refetchOnMount: false,
+      //   refetchOnWindowFocus: false,
+      //   refetchInterval: 2000,
+      //   refetchIntervalInBackground: 2000,
+      //   onSuccess: () => console.log("successully fetched"),
+      //   onError: () => console.log("error happend"),
     }
   );
 
-  console.log(`isLoading ${isLoading} isFetching ${isFetching}`);
+  //   console.log(`isLoading ${isLoading} isFetching ${isFetching}`);
 
   if (isLoading) return <h1>loading ...</h1>;
 
@@ -25,6 +35,12 @@ const CategoriesQuery = () => {
 
   return (
     <div>
+      <button onClick={refetch}>get all data</button>
+      {/* {data?.map((category, index) => (
+        <p key={index}>{category.name}</p>
+        <p>{category.description}</p>
+      ))} */}
+
       {data?.map((category, index) => (
         <p key={index}>{category.name}</p>
       ))}

@@ -29,6 +29,10 @@ const router = createBrowserRouter([
         path: "categories-query",
         element: <CategoriesQuery />,
       },
+      {
+        path: "*",
+        element: <h1>error page</h1>,
+      },
     ],
   },
 ]);
