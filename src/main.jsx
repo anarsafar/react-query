@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import ParallelQueries from "./pages/ParallelQueries";
 
 const client = new QueryClient();
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "categories-query",
         element: <CategoriesQuery />,
+      },
+      {
+        path: "parallel-query",
+        element: <ParallelQueries />,
       },
       {
         path: "*",
